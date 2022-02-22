@@ -1,0 +1,21 @@
+@import "@/assets/variables.sass"
+	
+.is-text-center
+	text-align: center !important
+.is-text-left
+	text-align: left !important
+.is-text-right
+	text-align: right !important
+
+@each $name,$color in $colors
+	.has-background-#{$name}
+		background-color: $color !important
+	p,title,sub,caption,h1,h2,h3,h4,h5,h6,li,button
+		&.is-text-#{$name}
+			color: $color !important
+
+.is-hidden
+	display: none
+
+
+	

@@ -7,9 +7,6 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style lang="sass">
-@import "@/assets/normalize.sass"
-@import "@/assets/variables.sass"
-@import "@/assets/utils.sass"
-
+@import "@/assets/_all.sass"
 </style>
 

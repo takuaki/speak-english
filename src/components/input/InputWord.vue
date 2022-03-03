@@ -35,10 +35,6 @@ $width: calc( v-bind(line) * 1em )
 .fillword
 	width: $width
 	display: inline-block
-
-	+ .fillword
-			margin-right: .5em
-
 	&-label
 		display: block
 		font-size: 0.8rem

@@ -1,38 +1,55 @@
 <template>
-	<main class="container">
-		<i class="fas fa-volume icon"></i>
-		<!--i class="fas fa-microphone icon"></i-->
-		<div class="box">
-			<p class="description">{{trains_text}}</p>
-		</div>
-		<div class="answer-region">
-			<template v-for="word in sentense">
-				<InputWord v-if="word.space" :answer="word.text" :check="check"/>	
-				<TextWord v-else :text="word.text"/>
-			</template>
-		</div>
-		<button class="button" type="button" @click="next">Check</button>
+	<main>
+		<section class="container">
+			<i class="fas fa-volume icon"></i>
+			<!--i class="fas fa-microphone icon"></i-->
+			<div class="box">
+				<p class="description">{{question}}</p>
+			</div>
+			<div class="answer-region">
+				<AnswerRegion :answer="sentense"/>
+			</div>
+			<!--i class="fas fa-caret-left" @click="prev"></i-->
+			<div class="button-group">
+				<button class="button" type="button" @click="check">Check</button>
+				<button class="button is-sub" type="button" @click="next" :disabled="!isCheck">Next</button>		
+			</div>
+		</section>
 	</main>
 </template>
 
-<script lang="ts" setup>
-import {ref} from "vue"
-import InputWord from '@/components/input/InputWord.vue'
-import TextWord from '@/components/TextWord.vue'
+<script setup lang="ts">
+import {onMounted, ref,onUnmounted,computed, provide} from "vue"
+import {getQuestions} from "@/server/api/translate/translate"
+import type {Questions} from "@/server/api/translate/translate"
+import AnswerRegion from '../components/AnswerRegion.vue'
 
-const trains_text = "私はエンジニアです、私の家族も皆エンジニアです。"
+const questions = ref<Questions.Response[]>([])
+const counter = ref(0)
+questions.value =  getQuestions()
+const isCheck  = ref<boolean>(false)
+provide("check",isCheck)
 
-const sentense:{space:boolean,text:string}[] = [
-	{space:false,text:'I\'m'},
-	{space:true,text:'engineer'},
-	{space:false,text:'everyone in my family is also'},
-	{space:true,text:'engineer'}
-]
+const question = computed(()=>{
+	return questions.value[counter.value].source
+})
 
-const check  = ref<boolean>(false)
+const sentense = computed(()=>{
+	const {answer,words} = questions.value[counter.value]
+	return answer.split(' ').map(word=>{
+		//TODO 汚いから修正
+		const space:boolean = words.find((w)=>w==word) != undefined
+		return{space: space,text:word}
+	})
+})
+
+const check = ()=>{
+	isCheck.value = true
+}
 
 const next = ()=>{
-	check.value = true
+	counter.value += 1
+	isCheck.value = false
 }
 
 </script>

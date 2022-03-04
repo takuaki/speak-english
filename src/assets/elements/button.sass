@@ -10,6 +10,10 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 	border-color: $primary-color
 	background-color: white
 	border-width: 1.5px
+
+	&:disabled
+		background-color: lightgray
+		border: none
 	
 	@each $name,$font-size in $button-size
 		&.is-#{$name}
@@ -17,3 +21,11 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 	@each $name,$color in $colors
 		&.is-#{$name}
 			border-color: $color
+
+//buttonを並列に並べる場合
+.button-group
+	display: flex
+	flex-direction: row
+	justify-content: center
+	flex-wrap: nowrap
+	column-gap: 20px

@@ -13,7 +13,7 @@ const {text} = defineProps<{text:string}>()
 .display
 	display: inline-block
 	font-size: 1.2rem
-	margin: 0px .5em
+	margin: 0px .3em
 
 
 </style>

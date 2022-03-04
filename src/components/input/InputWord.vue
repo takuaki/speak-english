@@ -1,30 +1,40 @@
 <template>
 	<div class="fillword">
-		<label class="fillword-label is-text-center" :class="{'is-hidden':collect}">{{answer}}</label>
+		<label class="fillword-label is-text-center" :class="{'is-hidden':collect||!check}">{{right}}</label>
 		<div class="control">
-			<input class="fillword-input is-text-center" :class="{'is-wrong':!collect}" v-model="word" type="text">
-			<span :class="{'is-hidden':collect}" class="strike-line"></span>
+			<input class="fillword-input is-text-center" :class="{'is-wrong':!collect&&check}" v-model="word" type="text" :disabled="check">
+			<span :class="{'is-hidden':collect||!check}" class="strike-line"></span>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { ref,defineProps,withDefaults, toRefs,computed} from 'vue';
+import { ref,defineProps,defineEmits, toRefs,computed, watch, inject} from 'vue'
+import type {Ref} from "vue"
 
-type Props = {answer:string,check:boolean}
+//injection
+const check = inject<Ref<boolean>>('check')
+
+type Props = {right:string}
 const props = defineProps<Props>()
-const {answer,check} = toRefs(props)
+const {right} = toRefs(props)
 
 const word = ref<string>("")
 
 const collect = computed(()=>{
-	return !check.value ? true: answer.value==word.value
+	return right.value.toLowerCase()==word.value.toLowerCase()
 })
 
+/**Emits*/
+const emits = defineEmits(['update:collect'])
+watch(word,(_)=>{
+	emits('update:collect',collect)
+})
+
+// css variables
 const line = computed(()=>{
-	return answer.value.length
+	return right.value.length
 })
-
 
 </script>
 
@@ -35,6 +45,8 @@ $width: calc( v-bind(line) * 1em )
 .fillword
 	width: $width
 	display: inline-block
+	margin: 0 .5em
+
 	&-label
 		display: block
 		font-size: 0.8rem

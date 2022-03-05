@@ -1,48 +1,58 @@
 <template>
-	<main class="container">
-		<!--cricle-progress  :percent="40" :size="100" :border-width="10" :border-bg-width="10"/-->
-		<section class="translate-from">
-			<p class="description is-text-left">私の父は60歳で定年を迎えました。その日は家族でファミレスでお祝いに行きました。</p>
-		</section>
-		<i class="fas fa-arrow-down icon"></i>
-		<section class="translate-to">
-			<speech-recognize/>
+	<Header id="header"></Header>
+	<main class="main-layout">
+		<aside class="sidemenu has-background-white-ter" :class="{'hide':hideMenu}">
+			<SideMenu/>
+		</aside>
+		<section class="main-content">
+			<router-view/>
 		</section>
 	</main>
 </template>
 
 <script lang="ts" setup>
-//import "vue3-circle-progress/dist/circle-progress.css"
-//import CricleProgress from "vue3-circle-progress"
-import SpeechRecognize from "@/components/SpeechRecognize.vue"
+import Header from "@/views/Header.vue"
+import SideMenu from "@/components/SideMenu.vue"
+import { onMounted,ref } from "vue";
+import {useToggleMenu} from "@/composable/toggleMenu"
+
+const headerHeight = ref<number|undefined>(0)
+const {hideMenu} = useToggleMenu()
+
+onMounted(()=>{
+	const header = document.querySelector("#header")
+	headerHeight.value = header?.clientHeight
+})
+
 
 </script>
 
 <style lang="sass">
-.container
-	padding: 10vh 10%	
-	text-align: center
 
-.vue3-circular-progressbar
-	display: block
-	margin: 0 auto
+$headerHeight : calc( v-bind(headerHeight) * 1px)
 
-.icon
-	font-size: 1.5rem
-	color: #333
-	margin: 20px auto
 
-.description
-	display: block
-	margin: 2em auto 0
-	word-wrap: break-word
-	font-size: 1.2rem
-	width: 600px
-	line-height: 1.5
-	padding: 1.0em 
-	border-radius: 10px
-	box-shadow: 1px 1px 8px 2px #ddd
+.main-layout
+	display: flex
+	flex-direction: row
+	justify-content: center
+	flex-wrap: nowrap
+	width: 100%
 
+	.sidemenu
+		height: calc(100vh - $headerHeight )
+		flex-basis: 20%
+		flex-grow: 0
+		flex-shrink: 1
+		transition-property: display
+		transition-delay: 500ms
+		
+		&.hide
+			display: none
+	
+	.main-content
+		flex-basis: 80%
+		flex-grow: 1
 	
 	
 </style>

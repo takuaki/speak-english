@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from "@/views/Home.vue"
 import FillWords from "@/views/FillWords.vue"
+import Course from "@/views/Course.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +9,15 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-			component: Home
+			component: Home,
+			children:[
+				{
+					path: '/course',
+					component:Course,
+					name:'course'
+				},
+				
+			]
     },
 		{
 			path: '/fillwords',

@@ -10,11 +10,23 @@
 @each $name,$color in $colors
 	.has-background-#{$name}
 		background-color: $color !important
-	p,title,sub,caption,h1,h2,h3,h4,h5,h6,li,button
-		&.is-text-#{$name}
-			color: $color !important
+	.is-text-#{$name}
+		color: $color !important
 
 .is-hidden
 	visibility: hidden !important
+
+//break-point
+@mixin mobile
+	@media only screen and (max-width: $tablet -1px)
+		@content
+
+@mixin tablet
+	@media only screen and (min-width: $tablet)
+		@content
+
+@mixin desktop
+	@media only screen and (min-width: $desktop)
+		@content
 
 	

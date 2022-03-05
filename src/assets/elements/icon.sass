@@ -1,0 +1,23 @@
+@import "@/assets/variables.sass"
+
+$size: ('is-small':1.0rem,'is-medium':1.5rem,'is-large':2.2rem,'is-huge':4.0rem)
+
+
+.icon
+	font-size: 1.2rem
+	padding: .2em
+
+	@each $name,$font-size in $size
+		&.#{$name}
+			font-size: $font-size
+
+	@each $name,$color in $colors
+		&.#{$name}
+			color: $color
+	
+	&[type="button"]
+		cursor: pointer
+		//hover
+		&:hover
+			border-radius: 3px
+			background-color: rgba(white,0.3)

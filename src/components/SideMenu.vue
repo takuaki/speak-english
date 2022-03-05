@@ -1,0 +1,25 @@
+<template>
+	<ul class="menu">
+		<li class="menu-item">Learning</li>
+		<li class="menu-item">Learned</li>
+		<li class="menu-item"></li>
+	</ul>
+</template>
+
+<script lang="ts" setup>
+import { inject } from 'vue'
+import type {Ref} from "vue"
+import type {User} from "@/App.vue"
+
+const user = inject<Ref<User>>('user')
+
+</script>
+
+<style lang="sass" scoped>
+.menu
+	list-style: none
+	
+	
+
+	
+</style>

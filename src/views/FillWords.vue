@@ -24,21 +24,20 @@ import {getQuestions} from "@/server/api/translate/translate"
 import type {Questions} from "@/server/api/translate/translate"
 import AnswerRegion from '../components/AnswerRegion.vue'
 
-const questions = ref<Questions.Response[]>([])
+const questions :ReadonlyArray<Questions.Response> = getQuestions()
 const counter = ref(0)
-questions.value =  getQuestions()
 const isCheck  = ref<boolean>(false)
 provide("check",isCheck)
 
 const question = computed(()=>{
-	return questions.value[counter.value].source
+	return questions[counter.value].source.sentence
 })
 
 const sentense = computed(()=>{
-	const {answer,words} = questions.value[counter.value]
-	return answer.split(' ').map(word=>{
+	const {answer} = questions[counter.value]
+	return answer.sentence.split(' ').map(word=>{
 		//TODO 汚いから修正
-		const space:boolean = words.find((w)=>w==word) != undefined
+		const space:boolean = answer.words.find((w)=>w==word) != undefined
 		return{space: space,text:word}
 	})
 })

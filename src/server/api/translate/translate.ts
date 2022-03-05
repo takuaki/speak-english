@@ -2,22 +2,30 @@ import apiClient from "../index"
 
 export namespace Questions{
 	export interface Response{
-		source: string,answer:string, words:string[]
+		source:{
+			sentence: string,
+			words:string[]
+		},
+		answer:{
+			sentence:string,
+			words:string[],
+			hints:string[]
+		}
 	}
 }
 
-//THIS IS TEST METHOD
 export const getQuestions:()=> Questions.Response[] = ()=>{
 	const quentions:Questions.Response[] = [
 		{
-			source:'私の兄はバスで帰宅します',answer:"My brother gets home by bus",words:['brother','bus']
+			source:{sentence:'私の兄はバスで帰宅します',words:['兄','バス'] },
+			answer:{sentence:"My brother gets home by bus",words:['brother','bus'],hints:['兄','バス']}
 		},
 		{
-			source:'私の妹はアメリカの歴史について知りません。',answer:'My sister doesn\'t know about American history',
-			words:['know','history']
+			source:{sentence:'私の妹はアメリカの歴史について知りません。',words:['知り','歴史']},
+			answer:{sentence:'My sister doesn\'t know about American history',words:['know','history'],hints:['知っている','歴史']}
 		},
-		{
-			source:"マイクは時々ユミと話をします。",answer: 'Mike sometimes talks with Yumi.',
+		/*{
+			source:{sentence:"マイクは時々ユミと話をします。",words:['時々','']},answer: 'Mike sometimes talks with Yumi.',
 			words:['sometimes','talks']
 		},
 		{
@@ -27,7 +35,7 @@ export const getQuestions:()=> Questions.Response[] = ()=>{
 		{
 			source: 'あなた達は金曜日の午後に何を勉強しますか',answer:'What do you study on Friday afternoon?',
 			words:['study','Friday']
-		}
+		}*/
 	]
 	return  quentions
 }

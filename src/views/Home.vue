@@ -40,6 +40,8 @@ $headerHeight : calc( v-bind(headerHeight) * 1px)
 	width: 100%
 
 	.sidemenu
+		position: sticky
+		top: $headerHeight
 		height: calc(100vh - $headerHeight )
 		flex-basis: 20%
 		flex-grow: 0

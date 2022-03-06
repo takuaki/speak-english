@@ -23,8 +23,6 @@
 <script lang="ts" setup>
 import { inject ,defineProps, toRefs,defineEmits, watch,ref} from 'vue'
 import type {Ref} from "vue"
-import type {User} from "@/App.vue"
-import router from '@/router'
 import {useToggleMenu} from "@/composable/toggleMenu"
 
 const {toggleMenu}  = useToggleMenu()

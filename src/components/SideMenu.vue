@@ -9,8 +9,6 @@
 <script lang="ts" setup>
 import { inject } from 'vue'
 import type {Ref} from "vue"
-import type {User} from "@/App.vue"
-
 const user = inject<Ref<User>>('user')
 
 </script>

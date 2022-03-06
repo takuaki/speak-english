@@ -1,21 +1,17 @@
 <template>
-	<main>
-		<section class="container">
-			<i class="fas fa-volume icon"></i>
-			<!--i class="fas fa-microphone icon"></i-->
-			<div class="box">
-				<p class="description">{{question}}</p>
-			</div>
-			<div class="answer-region">
-				<AnswerRegion :answer="sentense"/>
-			</div>
-			<!--i class="fas fa-caret-left" @click="prev"></i-->
-			<div class="button-group">
-				<button class="button" type="button" @click="check">Check</button>
-				<button class="button is-sub" type="button" @click="next" :disabled="!isCheck">Next</button>		
-			</div>
-		</section>
-	</main>
+	<section class="container">
+		<i class="fas fa-volume icon"></i>
+		<!--i class="fas fa-microphone icon"></i-->
+		<p class="description is-text-centered">{{question}}</p>
+		<div class="answer-region">
+			<AnswerRegion :answer="sentense"/>
+		</div>
+		<!--i class="fas fa-caret-left" @click="prev"></i-->
+		<div class="button-group">
+			<button class="button" type="button" @click="check">Check</button>
+			<button class="button is-sub" type="button" @click="next" :disabled="!isCheck">Next</button>		
+		</div>
+	</section>
 </template>
 
 <script setup lang="ts">
@@ -56,7 +52,13 @@ const next = ()=>{
 <style lang="sass" scoped>
 
 .answer-region
+	display: flex
+	flex-direction: row
+	justify-content: center
+	align-items: flex-end
+	width: 100%
 	margin: 50px auto
+	
 
 	
 </style>

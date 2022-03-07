@@ -3,9 +3,7 @@
 		<i class="fas fa-volume icon"></i>
 		<!--i class="fas fa-microphone icon"></i-->
 		<p class="description is-text-centered">{{question}}</p>
-		<div class="answer-region">
-			<AnswerRegion :answer="sentense"/>
-		</div>
+		<AnswerRegion :answer="sentense"/>
 		<!--i class="fas fa-caret-left" @click="prev"></i-->
 		<div class="button-group">
 			<button class="button" type="button" @click="check">Check</button>
@@ -15,14 +13,19 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref,onUnmounted,computed, provide} from "vue"
+import {ref,computed, provide} from "vue"
 import {getQuestions} from "@/server/api/translate/translate"
 import type {Questions} from "@/server/api/translate/translate"
 import AnswerRegion from '../components/AnswerRegion.vue'
+import { useRouter,useRoute } from "vue-router"
 
 const questions :ReadonlyArray<Questions.Response> = getQuestions()
 const counter = ref(0)
 const isCheck  = ref<boolean>(false)
+const router = useRouter()
+const route = useRoute()
+const {course,lesson} = route.params
+
 provide("check",isCheck)
 
 const question = computed(()=>{
@@ -42,23 +45,22 @@ const check = ()=>{
 	isCheck.value = true
 }
 
+/**
+ * 
+ */
 const next = ()=>{
-	counter.value += 1
-	isCheck.value = false
+	if(counter.value<questions.length-1){
+		counter.value +=1
+		isCheck.value = false
+	}else{
+		router.push(`/course/${course}/${lesson}/review`)
+	}
 }
 
 </script>
 
 <style lang="sass" scoped>
 
-.answer-region
-	display: flex
-	flex-direction: row
-	justify-content: center
-	align-items: flex-end
-	width: 100%
-	margin: 50px auto
-	
 
 	
 </style>

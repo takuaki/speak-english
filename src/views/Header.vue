@@ -5,15 +5,15 @@
 				<span class="icon white is-medium material-icons-outlined" type="button" @click="toggleMenu()">
 					menu
 				</span>
-				<span class="material-icons-outlined icon white is-medium" type="button">
+				<span class="material-icons-outlined icon white is-medium" type="button" @click="home">
 					home
 				</span>
 			</div>
 			<div class="nav-right">
-				<span v-if="user" class="icon white is-medium material-icons-outlined" type="button">
+				<span v-if="user" class="icon white is-medium material-icons-outlined" type="button" @click="profile">
 					user
 				</span>
-				<span v-else class="is-text-white">Login
+				<span v-else class="is-text-white" type="button" @click="login">Login
 				</span>
 			</div>
 		</nav>
@@ -24,10 +24,25 @@
 import { inject ,defineProps, toRefs,defineEmits, watch,ref} from 'vue'
 import type {Ref} from "vue"
 import {useToggleMenu} from "@/composable/toggleMenu"
+import { useRouter } from 'vue-router';
 
 const {toggleMenu}  = useToggleMenu()
-
 const user = inject<Ref<User>>('user')
+
+const router = useRouter()
+
+const home = ()=>{
+	router.push('/')
+}
+
+const login = ()=>{
+	router.push('/login')
+}
+
+const profile=()=>{
+	router.push(`profile/${user?.value?.uid}`)
+}
+
 
 </script>
 

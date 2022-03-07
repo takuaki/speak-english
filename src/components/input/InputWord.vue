@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,defineProps,defineEmits, toRefs,computed, watch, inject} from 'vue'
+import { ref, toRefs,computed, watch, inject,onMounted,onUnmounted,onUpdated} from 'vue'
 import type {Ref} from "vue"
 
 //injection
@@ -28,7 +28,7 @@ const collect = computed(()=>{
 /**Emits*/
 const emits = defineEmits(['update:collect'])
 watch(word,(_)=>{
-	emits('update:collect',collect)
+	emits('update:collect',collect.value)
 })
 
 // css variables

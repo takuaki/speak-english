@@ -1,0 +1,36 @@
+@import "@/assets/variables"
+
+	
+
+@mixin checkbox($color:$primary-color,$background:white,$border:gray,$size:24px)
+	//height: $size
+	//width: $size
+	margin: 0
+	-webkit-appearance: none
+	appearance: none
+	//visibility: hidden
+	position: relative
+	box-sizing: border-box
+	cursor: pointer
+
+	&::before
+		background: $background
+		border: 1px solid $border
+		content: ''
+		position: absolute
+		width: $size
+		height: $size
+		top: 0%
+		//margin-top: 
+		left: 0%
+		
+
+	&::after
+		//background: 
+
+	&:checked
+		background-color: $primary-color
+
+//.input[type=checkbox]
+//	@include checkbox
+	

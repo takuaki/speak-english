@@ -38,22 +38,8 @@ const router = createRouter({
 				}
 			]
 		},
-		{	
-			path: '/login',
-			name: 'login',
-			component:Login
-		},
-		{
-			path: '/signup',
-			name: 'signup',
-			component:SignUp
-		},
-		{
-			path: '/forget',
-			name: 'forgetpassword',
-			component: ForgetPassword	
-		}
-  ]//.push(authRoute)
+		...authRoute
+  ]
 })
 
 export default router

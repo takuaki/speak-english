@@ -13,7 +13,7 @@
 				<span v-if="user" class="icon white is-medium material-icons-outlined" type="button" @click="profile">
 					user
 				</span>
-				<span v-else class="is-text-white" type="button" @click="login">Login
+				<span v-else class="is-text-white has-pointer" type="button" @click="login">Login
 				</span>
 			</div>
 		</nav>

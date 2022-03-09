@@ -8,6 +8,7 @@
     },
 		"isolatedModules": false,
 		"allowJs": true,
+		"noEmit": true,
 		"typeRoots": [
 			"./note_modules/@types",
 			"./types"

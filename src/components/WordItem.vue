@@ -1,33 +1,37 @@
 <template>
 	<div class="box word-review has-pointer">
-		<span class="icon is-medium has-pointer material-icons-outlined is-circled has-background-white-ter">keyboard_voice</span>	
+		<span
+			class="icon is-medium has-pointer material-icons-outlined is-circled has-background-white-ter"
+			>keyboard_voice</span
+		>
 		<div class="word-review-contents">
-			<p class="body">{{word}}</p>
-			<P>{{translate}}</P>
+			<p class="body">{{ word }}</p>
+			<P>{{ translate }}</P>
 		</div>
-		<p class="body word-review-eval">{{text}}</p>
-		<input type="checkbox" class="input word-review-checkbox" :checked="checked">
+		<p class="body word-review-eval">{{ text }}</p>
+		<input
+			type="checkbox"
+			class="input word-review-checkbox"
+			:checked="checked"
+		/>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { toRefs,ref} from 'vue'
+import { toRefs, ref } from "vue"
 
-type Props= {
-	word:string,
-	translate:string,
-	mistake:boolean,
+type Props = {
+	word: string
+	translate: string
+	mistake: boolean
 }
 
 const props = defineProps<Props>()
-const {word,translate,mistake} = toRefs(props)
+const { word, translate, mistake } = toRefs(props)
 
 const checked = ref<boolean>(mistake.value)
-const text = mistake.value ? 'BAD':'GOOD'
-
-
+const text = mistake.value ? "BAD" : "GOOD"
 </script>
-
 
 <style lang="sass" scoped>
 
@@ -51,5 +55,4 @@ const text = mistake.value ? 'BAD':'GOOD'
 		width: 16px
 		height: 16px
 		vertical-align: baseline
-
 </style>

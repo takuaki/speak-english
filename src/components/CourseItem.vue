@@ -1,30 +1,29 @@
 <template>
-	<div class="box course-item" @click="link">
-		<span class="icon is-text-primary is-large ">
-			<slot name="icon">
-				<i class="fa fa-home"></i>
-			</slot>
-		</span>
-		<p class="body">
-			<slot name="title"></slot>
-		</p>
-		<p class="caption">
-			<slot name="caption"></slot>
-		</p>
-	</div>
+  <div class="box course-item" @click="link">
+    <span class="icon is-text-primary is-large">
+      <slot name="icon">
+        <i class="fa fa-home"></i>
+      </slot>
+    </span>
+    <p class="body">
+      <slot name="title"></slot>
+    </p>
+    <p class="caption">
+      <slot name="caption"></slot>
+    </p>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import { defineProps } from "vue"
+import { defineProps } from "vue";
 
-const {course} = defineProps<{course:string}>()
-const router = useRouter()
+const { course } = defineProps<{ course: string }>();
+const router = useRouter();
 
-const link =()=>{
-	router.push(`/course/${course}`)
-} 
-
+const link = () => {
+  router.push(`/course/${course}`);
+};
 </script>
 
 <style lang="sass" scoped>
@@ -33,8 +32,8 @@ const link =()=>{
 	display: flex
 	flex-direction: column
 	text-align: center
-	cursor: pointer	
-	
+	cursor: pointer
+
 	.body
 		margin: 0
 
@@ -42,5 +41,4 @@ const link =()=>{
 		margin-top: .5em
 		word-break: keep-all
 		word-wrap: break-word
-
 </style>

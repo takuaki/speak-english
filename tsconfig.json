@@ -1,18 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue","types/*.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "types/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-		"isolatedModules": false,
-		"allowJs": true,
-		"noEmit": true,
-		"typeRoots": [
-			"./note_modules/@types",
-			"./types"
-		]
+    "isolatedModules": true,
+    "allowJs": true,
+    "typeRoots": ["./note_modules/@types", "./types"]
   },
   "references": [
     {

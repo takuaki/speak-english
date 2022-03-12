@@ -1,12 +1,16 @@
 <template>
 	<div class="recognize-text">
 		<textarea class="textarea no-resize" v-model="script"></textarea>
-		<i class="fas fa-microphone-alt circle" :class="{'is-active':active}" @click="startRecord"></i>
-</div>
+		<i
+			class="fas fa-microphone-alt circle"
+			:class="{ 'is-active': active }"
+			@click="startRecord"
+		></i>
+	</div>
 </template>
 
 <script setup>
-import {ref} from "vue"
+import { ref } from "vue"
 
 /**
  * TODO chromeでしか動作しないので、修正する
@@ -17,24 +21,23 @@ const script = ref("")
 const SpeechRecognition = window.speechRecognition || webkitSpeechRecognition
 var recognition = new SpeechRecognition()
 recognition.continuous = false
-recognition.lang = 'en-US'
+recognition.lang = "en-US"
 recognition.interimResults = true
 
-const startRecord = ()=>{
+const startRecord = () => {
 	recognition.start()
 	active.value = true
 }
 
-recognition.onspeechend = ()=>{
+recognition.onspeechend = () => {
 	recognition.stop()
 	active.value = false
 }
 
-recognition.onresult = function(event){
-	const {transcript,confidence} = event.results[0][0]
+recognition.onresult = function (event) {
+	const { transcript, confidence } = event.results[0][0]
 	script.value = transcript
 }
-
 </script>
 
 <style lang="sass" scoped>
@@ -52,7 +55,7 @@ recognition.onresult = function(event){
 	border-color: $main-color
 	font-size: 2.0rem
 	line-height: 80px
-		
+
 	&.is-active
 		background-color: $primary-color
 		color: white
@@ -60,7 +63,7 @@ recognition.onresult = function(event){
 .textarea
 	width: 600px
 	height: 5.0rem
-	padding: 1.0em 
+	padding: 1.0em
 	border-radius: 10px
 	border-color: #ccc
 	box-shadow: 1px 1px 8px 2px #ddd
@@ -70,5 +73,4 @@ recognition.onresult = function(event){
 
 	&.no-resize
 		resize: none
-
 </style>

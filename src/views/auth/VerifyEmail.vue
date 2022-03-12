@@ -1,8 +1,8 @@
 <template>
   <main class="container is-fullheight">
     <section class="box">
-      <form id="forgetpassword">
-        <p class="title is-medium is-text-centered">パスワード再発行</p>
+      <form id="signup">
+        <p class="title is-medium is-text-centered">SignUp</p>
         <fieldset form="#signup">
           <FieldInput
             label="メールアドレス"
@@ -12,35 +12,19 @@
             :error="checkEmail"
           />
         </fieldset>
-        <button type="button" class="button" @click="submit">再発行</button>
       </form>
     </section>
   </main>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import FieldInput from "@/components/input/FieldInput.vue";
-import { ref } from "vue";
 import { useCheckAuthInput } from "@/composable/checkAuthField";
+import { ref } from "vue";
 
 const email = ref("");
-
-const submit = () => {
-  console.error("NOT IMPLEMENTED YET");
-};
 
 const { checkEmail } = useCheckAuthInput(email, ref(""));
 </script>
 
-<style lang="sass" scoped>
-.container
-	display: flex
-	flex-direction: column
-
-.box
-	width: 400px
-	margin: auto
-
-.button
-	margin: 1.0rem auto
-</style>
+<style lang="sass" scoped></style>

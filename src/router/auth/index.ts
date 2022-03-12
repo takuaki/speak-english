@@ -1,25 +1,31 @@
 import type { RouteRecordRaw } from "vue-router";
-import Login from "@/views/auth/Login.vue"
-import SignUp from "@/views/auth/SignUp.vue"
-import ForgetPassword from "@/views/auth/ForgetPass.vue"
+import Login from "@/views/auth/Login.vue";
+import SignUp from "@/views/auth/SignUp.vue";
+import ForgetPassword from "@/views/auth/ForgetPass.vue";
+import VerifyEmail from "@/views/auth/VerifyEmail.vue";
 
-const routes:RouteRecordRaw[] = [
-	{	
-		path: '/login',
-		name: 'login',
-		component:Login
-	},
-	{
-		path: '/signup',
-		name: 'signup',
-		component:SignUp
-	},
-	{
-		path: '/forget',
-		name: 'forgetpassword',
-		component: ForgetPassword	
-	}
-]
+const routes: RouteRecordRaw[] = [
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignUp,
+  },
+  {
+    path: "/forget",
+    name: "forgetpassword",
+    component: ForgetPassword,
+  },
+  {
+    path: "/verifyEmail",
+    name: "verifyEmail",
+    component: VerifyEmail,
+    meta: { requireAuth: true },
+  },
+];
 
-export default routes
-
+export default routes;

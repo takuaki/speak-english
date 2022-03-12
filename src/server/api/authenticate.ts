@@ -1,0 +1,92 @@
+//import * as firebase from "firebase/app"
+import { firebaseApp } from ".";
+import { unref } from "vue";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged as stateChanged,
+  sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  AuthErrorCodes,
+  type User,
+} from "firebase/auth";
+import { Success, Failure } from "@/utils/result";
+import type { Result } from "@/utils/result";
+import type { AuthError } from "firebase/auth";
+
+const auth = getAuth(firebaseApp);
+
+const signIn: (
+  email: MaybeRef<string>,
+  password: MaybeRef<string>
+) => Promise<Result<{ uid: string }, { error: string }>> = async (
+  _email: MaybeRef<string>,
+  _password: MaybeRef<string>
+) => {
+  try {
+    const email = unref<string>(_email);
+    const password = unref<string>(_password);
+
+    const { user, operationType } = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    if (operationType === "signIn") return new Success({ uid: user.uid });
+    else if (operationType === "reauthenticate") {
+      return new Failure({ error: "has-account" });
+    } else return new Failure({ error: "auth/unknown" });
+  } catch (err) {
+    //TODO
+    /*if (err.code === "auth/user-not-found")
+      return failure({ error: "user-not-found" });
+    else*/ return new Failure({ error: "auth/unknown" });
+  }
+};
+
+const signUp: (
+  email: MaybeRef<string>,
+  password: MaybeRef<string>
+) => Promise<Result<{ uid: string }, { error: string }>> = async (
+  email,
+  password
+) => {
+  try {
+    const { user, operationType } = await createUserWithEmailAndPassword(
+      auth,
+      unref(email),
+      unref(password)
+    );
+    if (operationType === "reauthenticate")
+      return new Success({ uid: user.uid });
+    else if (operationType === "signIn")
+      return new Failure({ error: "auth/user-already-has-account" });
+    else return new Failure({ error: "auth/unknown" });
+  } catch (err) {
+    console.error(err);
+    return new Failure({ error: "auth/unknown" });
+  }
+};
+
+const onAuthStateChanged = (callback: (user: User) => void) => {
+  stateChanged(auth, callback);
+};
+
+/*const resetPassword: (email: MaybeRef<string>) => Promise<boolean> = async (
+  email
+) => {
+  try {
+		
+    return true;
+
+  } catch (err) {
+    if (err instanceof AuthError) {
+			err
+    }
+    return false;
+  }
+};*/
+
+export { signIn, signUp, onAuthStateChanged };
+export default auth;

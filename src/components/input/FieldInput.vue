@@ -1,13 +1,7 @@
 <template>
   <label class="label">{{ label }}</label>
   <div class="control is-rounded has-icons-left is-medium">
-    <input
-      class="input"
-      v-model="input"
-      :type="type"
-      @focusin="focusin"
-      @focusout="focusout"
-    />
+    <input class="input" v-model="input" :type="type" />
     <span class="icon icon-left material-icons-outlined">{{ icon }}</span>
   </div>
 </template>
@@ -26,14 +20,9 @@ type Props = {
 const props = defineProps<Props>();
 const { label, icon, type, modelValue, error } = toRefs(props);
 const input = ref(modelValue.value);
-//const focus = ref<boolean>(false)
 
-const emits = defineEmits(["modelValue"]);
-watch(input, () => {
-  emits("modelValue", input.value);
+const emits = defineEmits(["update:modelValue"]);
+watch(input, (value) => {
+  emits("update:modelValue", value);
 });
-
-const focusin = (_: any) => {};
-
-const focusout = (_: any) => {};
 </script>

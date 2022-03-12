@@ -1,0 +1,29 @@
+/* eslint-env node */
+{
+  "root": true,
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-prettier",
+    "prettier"
+  ],
+  "env": {
+    "vue/setup-compiler-macros": true,
+    "browser": true
+  },
+  "plugins": ["vue"],
+  "rules": {
+    "no-unused-vars": "off",
+    "eqeqeq": ["error", "smart"],
+    "no-namespace": "off",
+    "semi": "off",
+    "no-empty-function": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "prettier.endOfLine": "auto"
+      }
+    ]
+  }
+}

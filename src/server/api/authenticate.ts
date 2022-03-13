@@ -6,14 +6,14 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged as stateChanged,
-  sendPasswordResetEmail,
+  /*sendPasswordResetEmail,
   verifyPasswordResetCode,
-  AuthErrorCodes,
+  AuthErrorCodes,*/
   type User,
+  type NextFn,
 } from "firebase/auth";
 import { Success, Failure } from "@/utils/result";
 import type { Result } from "@/utils/result";
-import type { AuthError } from "firebase/auth";
 
 const auth = getAuth(firebaseApp);
 
@@ -69,24 +69,9 @@ const signUp: (
   }
 };
 
-const onAuthStateChanged = (callback: (user: User) => void) => {
+const onAuthStateChanged = (callback: NextFn<User | null>) => {
   stateChanged(auth, callback);
 };
-
-/*const resetPassword: (email: MaybeRef<string>) => Promise<boolean> = async (
-  email
-) => {
-  try {
-		
-    return true;
-
-  } catch (err) {
-    if (err instanceof AuthError) {
-			err
-    }
-    return false;
-  }
-};*/
 
 export { signIn, signUp, onAuthStateChanged };
 export default auth;

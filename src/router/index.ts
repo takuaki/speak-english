@@ -18,16 +18,19 @@ const router = createRouter({
         {
           path: "course",
           component: Course,
+					name:"curses"
         },
         {
           path: "course/:course",
           component: Lessons,
+					name: "course",
           props: true,
         },
         {
           path: "course/:course/:lesson",
           component: FillWords,
           props: true,
+					name:"lesson"
         },
         {
           path: "course/:course/:lesson/review",

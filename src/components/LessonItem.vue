@@ -30,7 +30,10 @@ const props = defineProps<Props>();
 const { name, questions, answered, id } = toRefs(props.info);
 const link = () => {
   const { course } = route.params;
-  router.push(`${course}/${id}`);
+  router.push({
+    name: "lesson",
+    params: { course: course, lesson: `lesson_${id.value}` },
+  });
 };
 </script>
 

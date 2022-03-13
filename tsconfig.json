@@ -1,13 +1,15 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "types/*.ts"],
+  "include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "types/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
+    "target": "esnext",
+    "module": "esnext",
     "isolatedModules": true,
-    "allowJs": true,
+    "allowJs": false,
     "typeRoots": ["./note_modules/@types", "./types"]
   },
   "references": [

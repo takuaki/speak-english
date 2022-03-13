@@ -3,10 +3,15 @@ import { provide, ref } from "vue";
 import { RouterView } from "vue-router";
 import { onAuthStateChanged } from "@/server/api/authenticate";
 
-const user = ref<User>();
+const user = ref<User | null>();
 
-onAuthStateChanged(({ displayName, uid }) => {
-  user.value = { displayName: displayName, uid: uid };
+onAuthStateChanged((value) => {
+  if (value == null) {
+    user.value = null;
+  } else {
+    const { displayName, uid } = value;
+    user.value = { displayName: displayName, uid: uid };
+  }
 });
 
 provide("user", user);

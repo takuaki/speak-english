@@ -4,9 +4,9 @@
   "extends": [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
+    "prettier",
     "@vue/eslint-config-typescript/recommended",
-    "@vue/eslint-config-prettier",
-    "prettier"
+    "@vue/eslint-config-prettier"
   ],
   "env": {
     "vue/setup-compiler-macros": true,
@@ -14,15 +14,15 @@
   },
   "plugins": ["vue"],
   "rules": {
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
     "eqeqeq": ["error", "smart"],
-    "no-namespace": "off",
+    "@typescript-eslint/no-namespace": "off",
     "semi": "off",
     "no-empty-function": "error",
     "prettier/prettier": [
       "error",
       {
-        "prettier.endOfLine": "auto"
+        "endOfLine": "auto"
       }
     ]
   }

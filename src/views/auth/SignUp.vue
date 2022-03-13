@@ -42,7 +42,7 @@ const submit = async () => {
   if (result.isSuccess()) {
     router.push({ name: "verifyEmail" });
   } else if (result.isFailure()) {
-    result.error;
+    console.error(result.value);
   }
 };
 

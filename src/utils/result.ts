@@ -1,32 +1,37 @@
 interface Result<T, F> {
-  isSuccess(): this is T;
-  isFailure(): this is F;
+  isSuccess(): this is Success<T, F>;
+  isFailure(): this is Failure<T, F>;
   readonly value: T | F;
 }
 
 class Success<T, E> implements Result<T, E> {
-  constructor(readonly value: T);
+  constructor(value: T) {
+    this.value = value;
+  }
 
-  //readonly value:T = this._value
+  readonly value: T;
 
-  isSuccess(): this is T {
+  isSuccess() {
     return true;
   }
 
-  isFailure(): this is E {
+  isFailure() {
     return false;
   }
 }
 
 class Failure<T, E> implements Result<T, E> {
-  constructor(readonly value: E);
+  constructor(value: E) {
+    this.value = value;
+  }
 
-  //readonly value:E = this._value
+  readonly value: E;
 
-  isSuccess(): this is T {
+  isSuccess() {
     return false;
   }
-  isFailure(): this is E {
+
+  isFailure() {
     return true;
   }
 }
@@ -39,4 +44,5 @@ function failure<T, F>(value: F) {
   return new Failure<T, F>(value);
 }
 
-export { Result, Success, Failure, success, failure };
+export { Success, Failure, success, failure };
+export type { Result };

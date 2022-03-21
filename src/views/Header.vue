@@ -18,14 +18,15 @@
         </span>
       </div>
       <div class="nav-right">
-        <span
-          v-if="user"
-          class="icon white is-medium material-icons-outlined"
-          type="button"
-          @click="profile"
-        >
-          account_circle
-        </span>
+        <div v-if="user">
+          <span
+            class="icon white is-medium material-icons-outlined"
+            type="button"
+            @click="profile"
+          >
+            account_circle
+          </span>
+        </div>
         <span
           v-else
           class="is-text-white has-pointer"

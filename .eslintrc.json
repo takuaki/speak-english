@@ -14,7 +14,7 @@
   },
   "plugins": ["vue"],
   "rules": {
-    "no-unused-vars": "warn",
+    "no-unused-vars": ["warn", { "args": "none" }],
     "eqeqeq": ["error", "smart"],
     "@typescript-eslint/no-namespace": "off",
     "semi": "off",

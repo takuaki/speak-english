@@ -10,7 +10,8 @@
     "module": "esnext",
     "isolatedModules": true,
     "allowJs": false,
-    "typeRoots": ["./note_modules/@types", "./types"]
+    "typeRoots": ["./note_modules/@types", "./types"],
+    "types": ["vitest/globals"]
   },
   "references": [
     {

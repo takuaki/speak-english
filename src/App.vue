@@ -6,12 +6,7 @@ import { onAuthStateChanged } from "@/server/api/authenticate";
 const user = ref<User | null>();
 
 onAuthStateChanged((value) => {
-  if (value == null) {
-    user.value = null;
-  } else {
-    const { displayName, uid } = value;
-    user.value = { displayName: displayName, uid: uid };
-  }
+  user.value = value;
 });
 
 provide("user", user);

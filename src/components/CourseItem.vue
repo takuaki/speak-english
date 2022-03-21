@@ -16,13 +16,14 @@
 
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import { defineProps } from "vue";
+import { defineProps, toRefs } from "vue";
 
-const { course } = defineProps<{ course: string }>();
+const props = defineProps<{ course: string }>();
+const { course } = toRefs(props);
 const router = useRouter();
 
 const link = () => {
-  router.push(`/course/${course}`);
+  router.push({ name: "course", params: { course: course.value } });
 };
 </script>
 

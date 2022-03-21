@@ -1,4 +1,9 @@
-import { createRouter, createWebHistory, RouterView } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  routeLocationKey,
+  RouterView,
+} from "vue-router";
 import authRoute from "@/router/auth/index";
 import Home from "@/views/Home.vue";
 import FillWords from "@/views/FillWords.vue";
@@ -14,27 +19,28 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: Home,
+      meta: { requireAuth: true },
       children: [
         {
-          path: "course",
+          path: "",
           component: Course,
-					name:"curses"
         },
         {
           path: "course/:course",
           component: Lessons,
-					name: "course",
+          name: "course",
           props: true,
         },
         {
-          path: "course/:course/:lesson",
+          path: "course/:course/lesson/:lesson",
           component: FillWords,
           props: true,
-					name:"lesson"
+          name: "lesson",
         },
         {
-          path: "course/:course/:lesson/review",
+          path: "course/:course/lesson/:lesson/review",
           component: Review,
+          name: "review",
           props: true,
         },
       ],
@@ -45,11 +51,17 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const user = auth.currentUser;
-  if (to.meta.requireAuth && !user) {
-    return {
-      path: "/login",
-      query: { redirect: to.fullPath },
-    };
+  if (to.meta.requireAuth) {
+    if (user === null) {
+      return {
+        path: "/login",
+        query: { redirect: to.fullpath },
+      };
+    } else if (user.displayName === null && to.name !== "username") {
+      return {
+        path: "/username",
+      };
+    }
   }
 });
 

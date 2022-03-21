@@ -1,16 +1,36 @@
-import { ref } from "vue";
-import type { Ref } from "vue";
+import { computed } from "vue";
+import { seachUser } from "@/server/api/admin";
+import type { Ref, ComputedRef } from "vue";
 
-export function useCheckAuthInput(email: Ref<string>, password: Ref<string>) {
-  const checkEmail = ref<boolean>(false);
-  const checkPassword = ref<boolean>(false);
-  checkEmail.value = RegExp("/^[^s@]+@[^s@]+.[^s@]+$/").test(email.value);
-  checkPassword.value = RegExp("^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$").test(
-    password.value
-  );
+/**
+ * @param email
+ * @param password medium strong password
+ * @param userName at least 4 letters
+ */
+export function useCheckAuthInput(
+  email: Ref<string>,
+  password: Ref<string>
+  //userName: Ref<string>
+) {
+  const emailChecker = RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+  const passwordChecker = RegExp("(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}");
+  //const userChecker = RegExp("[a-z0-9]{4,12}");
+  const checkEmail: ComputedRef<string | null> = computed(() => {
+    if (email.value === "") return null;
+    return emailChecker.test(email.value) ? null : "不正な値です";
+  });
+
+  const checkPassword: ComputedRef<string | null> = computed(() => {
+    if (password.value === "") return null;
+    return passwordChecker.test(password.value) ? null : "不正な値です";
+  });
 
   return {
     checkEmail,
     checkPassword,
   };
+}
+
+export function useCheckUniqueUser(username: Ref<string>) {
+  
 }

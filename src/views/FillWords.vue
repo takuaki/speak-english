@@ -3,29 +3,28 @@
     <i class="fas fa-volume icon"></i>
     <!--i class="fas fa-microphone icon"></i-->
     <p class="description is-text-centered">{{ question }}</p>
-    <AnswerRegion :answer="sentense" v-if="sentense" />
+    <AnswerRegion :answer="sentense" :counter="counter" v-if="sentense" />
     <!--i class="fas fa-caret-left" @click="prev"></i-->
-    <div class="button-group">
-      <button class="button" type="button" @click="check">Check</button>
-      <button
-        class="button is-sub"
-        type="button"
-        @click="next"
-        :disabled="!isCheck"
-      >
-        Next
-      </button>
-    </div>
+    <!--div class="button-group"-->
+    <button class="button" type="button" @click="check">Check</button>
+    <button
+      class="button is-sub"
+      type="button"
+      @click="next"
+      :disabled="!isCheck"
+    >
+      Next
+    </button>
+    <!--/div-->
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, provide, toRefs, onMounted } from "vue";
 import type { Ref } from "vue";
-///import { getQuestions } from "@/server/api/translate/translate";
 import type { Questions } from "@/server/api/translate/translate";
 import AnswerRegion from "../components/AnswerRegion.vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { getQuestions } from "@/server/api/translate/translate";
 
 type Props = { course: string; lesson: string };
@@ -79,4 +78,10 @@ const next = () => {
 };
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="sass" scoped>
+.button
+	width: 120px
+	margin: auto
+	+ .button
+		margin-top: 10px
+</style>

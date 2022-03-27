@@ -1,32 +1,31 @@
 <template>
-  <Header id="header"></Header>
-  <main class="main-layout">
-    <aside
-      class="sidemenu has-background-white-ter"
-      :class="{ hide: hideMenu }"
-    >
-      <SideMenu />
-    </aside>
-    <section class="main-content">
-      <RouterView />
-    </section>
-  </main>
+	<Header v-on:update:height="updateHeight"></Header>
+	<main class="main-layout">
+		<aside
+			class="sidemenu has-background-white-ter"
+			:class="{ hide: hideMenu }"
+		>
+			<SideMenu />
+		</aside>
+		<section class="main-content has-background">
+			<RouterView />
+		</section>
+	</main>
 </template>
 
 <script lang="ts" setup>
 import Header from "@/views/Header.vue";
 import SideMenu from "@/components/SideMenu.vue";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useToggleMenu } from "@/composable/toggleMenu";
 import { RouterView } from "vue-router";
 
 const headerHeight = ref<number | undefined>(0);
 const { hideMenu } = useToggleMenu();
 
-onMounted(() => {
-  const header = document.querySelector("#header");
-  headerHeight.value = header?.clientHeight;
-});
+const updateHeight = (height?: number) => {
+	headerHeight.value = height;
+};
 </script>
 
 <style lang="sass">

@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { mount, flushPromises } from "@vue/test-utils";
 import UserName from "../UserName.vue";
-import { seachUser } from "@/server/api/admin";
+import { uniqueUser } from "@/server/api/admin";
 
 vi.mock("@/server/api/admin", () => ({
-  seachUser: vi.fn(() => Promise.resolve(true)),
+  uniqueUser: vi.fn(() => Promise.resolve(false)),
 }));
 
 describe("UserName", () => {

@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 import FieldInput from "../../components/input/FieldInput.vue";
-import { seachUser } from "@/server/api/admin";
+import { uniqueUser } from "@/server/api/admin";
 import { setUserName } from "@/server/api/authenticate";
 import { inject, ref, watch } from "vue";
 import type { Ref } from "vue";
@@ -43,7 +43,7 @@ const username = ref("");
 const checkUserName = ref<string | null>(null);
 
 watch(username, async (value) => {
-  const unique = await seachUser(value);
+  const unique = await uniqueUser(value);
   checkUserName.value = !unique ? "他のユーザーが使っています" : null;
 });
 

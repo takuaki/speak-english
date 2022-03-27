@@ -4,7 +4,7 @@ import { success, failure, Success, Failure } from "@/utils/result";
 import type { Result } from "@/utils/result";
 import type { Database } from "firebase/database";
 import { objectToString } from "@vue/shared";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 type QuizObject = {
   name: string;
@@ -117,32 +117,6 @@ const readCourse: (
     Object.assign(obj, { lesson: Object.keys(lessons[lesson]) });
   }
   return obj;
-};
-
-const readProgress: (
-  uid: string
-) => Promise<{ quiz: string; [word: string]: boolean }> = async (
-  uid,
-  course
-) => {
-  const path = `user/${uid}/track`;
-  const reference = ref(db, path);
-  const snapshot = await get(reference);
-
-  const memory: { [lesson: string]: { [word: string]: boolean } } =
-    Object.create(null);
-
-  //const memory: { quiz: string; [word: string]: boolean } = Object.create(null);
-  snapshot.forEach((child) => {
-    const lesson = child.key;
-    if (child.hasChild("words") && lesson) {
-      const words = child.child("words");
-      for (quiz in words) {
-        Object.assign(memory, words[quiz]);
-      }
-    }
-  });
-  return memory;
 };
 
 export { readLesson, writeLesson, readCourse };

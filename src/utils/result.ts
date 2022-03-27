@@ -2,6 +2,10 @@ interface Result<T, F> {
   isSuccess(): this is Success<T, F>;
   isFailure(): this is Failure<T, F>;
   readonly value: T | F;
+  flatMap<R, L>(fnL: (f: F) => L, fnR: (t: T) => R): Result<R, L>;
+  //flatMap<R, F>(fnR: (t: T) => R): Result<R, F>;
+  //flatMap<T, L>(fnL: (f: F) => L): Result<T, L>;
+  //map(fn:(t:T)=>any, fn:(f:F)=>any): Result<T, F>;
 }
 
 class Success<T, E> implements Result<T, E> {
@@ -18,6 +22,10 @@ class Success<T, E> implements Result<T, E> {
   isFailure() {
     return false;
   }
+
+  flatMap<R, L>(fnL: (f: E) => L, fnR: (t: T) => R): Result<R, L> {
+    return success<R, L>(fnR(this.value));
+  }
 }
 
 class Failure<T, E> implements Result<T, E> {
@@ -33,6 +41,10 @@ class Failure<T, E> implements Result<T, E> {
 
   isFailure() {
     return true;
+  }
+
+  flatMap<R, L>(fnL: (f: E) => L, fnR: (t: T) => R): Result<R, L> {
+    return failure<R, L>(fnL(this.value));
   }
 }
 

@@ -3,7 +3,10 @@
     <p class="is-text-right has-pointer" @click="linkSignUp">
       アカウント作成はこちら
     </p>
-    <section class="box">
+    <div class="login-alert">
+      <ErrorMessage :message="authError" />
+    </div>
+    <section class="box login-box">
       <form id="login">
         <p class="title is-medium is-text-centered">Login</p>
         <fieldset form="#login">
@@ -44,9 +47,11 @@ import { useCheckAuthInput } from "@/composable/checkAuthField";
 import { ref, type Ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { signIn } from "@/server/api/authenticate";
+import ErrorMessage from "../../components/notification/ErrorMessage.vue";
 
 const email = ref("");
 const password = ref("");
+const authError = ref("");
 const router = useRouter();
 
 const { checkEmail, checkPassword } = useCheckAuthInput(email, password);
@@ -55,12 +60,25 @@ const disabled: Ref<boolean> = computed(() => {
 });
 
 const submit = async () => {
+  authError.value = "";
+  if (disabled.value) return;
   const result = await signIn(email, password);
-  if (result.isSuccess()) {
-    router.push({ name: "home" });
-  } else {
-    console.error(result.value);
-  }
+
+  result.flatMap(
+    ({ error }) => {
+      switch (error) {
+        case "user-not-found":
+          authError.value = "アカウントが存在しません";
+          break;
+        case "unknown":
+          authError.value = "ログイン出来ませんでした";
+          break;
+      }
+    },
+    (_) => {
+      router.push({ name: "home" });
+    }
+  );
 };
 
 const linkSignUp = () => {
@@ -83,4 +101,9 @@ const forgetpassword = () => {
 
 .button
 	margin: 1.0rem auto
+
+.login
+	&-alert
+		margin: 0 auto 20px
+		width: 400px
 </style>

@@ -1,9 +1,7 @@
 <template>
-  <ul class="menu">
-    <li class="menu-item">Learning</li>
-    <li class="menu-item">Learned</li>
-    <li class="menu-item"></li>
-  </ul>
+	<div class="menu">
+		<slot></slot>
+	</div>
 </template>
 
 <script lang="ts" setup>

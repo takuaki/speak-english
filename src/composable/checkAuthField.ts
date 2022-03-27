@@ -1,5 +1,4 @@
 import { computed } from "vue";
-import { seachUser } from "@/server/api/admin";
 import type { Ref, ComputedRef } from "vue";
 
 /**
@@ -29,8 +28,4 @@ export function useCheckAuthInput(
     checkEmail,
     checkPassword,
   };
-}
-
-export function useCheckUniqueUser(username: Ref<string>) {
-  
 }

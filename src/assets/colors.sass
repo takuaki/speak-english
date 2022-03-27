@@ -1,0 +1,27 @@
+@import "./variables"
+
+@each $name,$color in $colors
+	.has-background-#{$name}
+		background-color: $color !important
+	.is-#{$name}
+		color: $color !important
+	 
+.has-background-invert
+	background-color: $background-color-invert !important
+.has-background
+	background-color: $background-color !important
+.has-background-primary
+	background-color: $primary-color !important
+.has-background-accent
+	background-color: $accent-color !important
+
+
+.is-text
+	color: $text-color !important
+.is-text-invert
+	color: $text-color-invert !important
+.is-text-on-primary
+	color: $text-on-primary  !important
+.is-text-on-accent
+	color: $text-on-accent !important
+	

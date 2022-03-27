@@ -1,7 +1,7 @@
 import { httpsCallable } from "firebase/functions";
 import { functions } from "./";
 
-const seachUser: (username: string) => Promise<boolean> = async (username) => {
+const uniqueUser: (username: string) => Promise<boolean> = async (username) => {
   const { data } = await httpsCallable<{ name: string }, { unique: boolean }>(
     functions,
     "searchUser"
@@ -9,4 +9,15 @@ const seachUser: (username: string) => Promise<boolean> = async (username) => {
   return data.unique;
 };
 
-export { seachUser };
+const deleteUser: (uid: string) => Promise<boolean> = async (uid) => {
+  const { data } = await httpsCallable<
+    string,
+    { success: boolean; message: string | null }
+  >(
+    functions,
+    "deleteUser"
+  )(uid);
+  return data.success;
+};
+
+export { uniqueUser, deleteUser };

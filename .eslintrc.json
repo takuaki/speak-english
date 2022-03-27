@@ -1,29 +1,35 @@
 /* eslint-env node */
 {
-  "root": true,
-  "extends": [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "prettier",
-    "@vue/eslint-config-typescript/recommended",
-    "@vue/eslint-config-prettier"
-  ],
-  "env": {
-    "vue/setup-compiler-macros": true,
-    "browser": true
-  },
-  "plugins": ["vue"],
-  "rules": {
-    "no-unused-vars": ["warn", { "args": "none" }],
-    "eqeqeq": ["error", "smart"],
-    "@typescript-eslint/no-namespace": "off",
-    "semi": "off",
-    "no-empty-function": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ]
-  }
+	"root": true,
+	"extends": [
+		"plugin:vue/vue3-essential",
+		"eslint:recommended",
+		"prettier",
+		"@vue/eslint-config-typescript/recommended",
+		"@vue/eslint-config-prettier"
+	],
+	"env": {
+		"vue/setup-compiler-macros": true,
+		"browser": true
+	},
+	"plugins": ["vue"],
+	"rules": {
+		"no-unused-vars": ["warn", { "args": "none" }],
+		"eqeqeq": ["error", "smart"],
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"@typescript-eslint/no-namespace": "off",
+		"semi": "off",
+		"no-empty-function": "error",
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto",
+				"useTabs": true
+			}
+			/*"e",
+			{
+				"useTabs": "true"
+			}*/
+		]
+	}
 }

@@ -1,24 +1,24 @@
 <template>
-  <div class="fillword">
-    <label
-      class="fillword-label is-text-center"
-      :class="{ 'is-hidden': collect || !check }"
-      >{{ right }}</label
-    >
-    <div class="control">
-      <input
-        class="fillword-input is-text-center"
-        :class="{ 'is-wrong': !collect && check }"
-        v-model="word"
-        type="text"
-        :disabled="check"
-      />
-      <span
-        :class="{ 'is-hidden': collect || !check }"
-        class="strike-line"
-      ></span>
-    </div>
-  </div>
+	<div class="fillword">
+		<label
+			class="fillword-label is-text-center"
+			:class="{ 'is-hidden': collect || !check }"
+			>{{ right }}</label
+		>
+		<div class="control">
+			<input
+				class="fillword-input is-text-center body"
+				:class="{ 'is-wrong': !collect && check }"
+				v-model="word"
+				type="text"
+				:disabled="check"
+			/>
+			<span
+				:class="{ 'is-hidden': collect || !check }"
+				class="strike-line"
+			></span>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -35,22 +35,23 @@ const { right } = toRefs(props);
 const word = ref<string>("");
 
 const collect = computed(() => {
-  return right.value.toLowerCase() === word.value.toLowerCase();
+	return right.value.toLowerCase() === word.value.toLowerCase();
 });
 
 /**Emits*/
 const emits = defineEmits(["update:collect"]);
 watch(word, () => {
-  emits("update:collect", collect.value);
+	emits("update:collect", collect.value);
 });
 
 // css variables
 const line = computed(() => {
-  return right.value.length;
+	return right.value.length;
 });
 </script>
 
 <style lang="sass" scoped>
+@import "@/assets/variables.sass"
 
 $width: calc( v-bind(line) * 1em )
 
@@ -68,12 +69,12 @@ $width: calc( v-bind(line) * 1em )
 		width: 100%
 		line-height: 1.5
 		outline-style: none
-		font-size: 1.2rem
+		background-color: transparent
 		border:
 			top: none
 			left: none
 			right: none
-			bottom: 1px dashed black
+			bottom: 2px dashed $accent-color
 
 		&.is-wrong
 			border-color: red

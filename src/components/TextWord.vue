@@ -1,20 +1,16 @@
 <template>
-	<p class="display">{{text}}</p>
+	<p class="display body">{{ text }}</p>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { toRefs } from "vue";
 
-const {text} = defineProps<{text:string}>()
-
+const props = defineProps<{ text: string }>();
+const { text } = toRefs(props);
 </script>
 
 <style lang="sass" scoped>
 .display
 	display: inline-block
-	font-size: 1.2rem
 	margin: 0px .3em
-
-
 </style>
-

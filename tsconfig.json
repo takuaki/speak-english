@@ -1,21 +1,21 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "types/*.ts"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-    "target": "esnext",
-    "module": "esnext",
-    "isolatedModules": true,
-    "allowJs": false,
-    "typeRoots": ["./note_modules/@types", "./types"],
-    "types": ["vitest/globals"]
-  },
-  "references": [
-    {
-      "path": "./tsconfig.vite-config.json"
-    }
-  ]
+	"extends": "@vue/tsconfig/tsconfig.web.json",
+	"include": ["env.d.ts", "src/**/*.ts", "src/**/*.vue", "types/*.ts"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"target": "esnext",
+		"module": "esnext",
+		"isolatedModules": true,
+		"allowJs": false,
+		"typeRoots": ["./note_modules/@types", "./types"],
+		"types": ["vitest/globals"]
+	},
+	"references": [
+		{
+			"path": "./tsconfig.vite-config.json"
+		}
+	]
 }

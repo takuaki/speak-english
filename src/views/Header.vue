@@ -93,19 +93,4 @@ onMounted(() => {
 	position: sticky
 	top: 0
 
-.nav
-	display: flex
-	flex-direction: row
-	justify-items: center
-	align-items: center
-	flex-wrap: nowrap
-
-	.icon + .icon
-		margin-left: .5rem
-
-	&-left
-		margin-right: auto
-
-	&-right
-		margin-left: auto
 </style>

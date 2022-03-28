@@ -1,0 +1,34 @@
+{
+	"sentenses": [
+		{
+			"source": "僕に見せることのできる絵が何かあるかい？",
+			"answer": "Do you have any paintings that you can show me?",
+			"question": 4
+		},
+		{
+			"source": "ローマは一日にしてならず",
+			"answer": "Rome wasn't built in a day",
+			"question": 2
+		},
+		{
+			"source": "さまざまは通勤手段について、あなたはどう思いますか？",
+			"answer": "What's your take on  different modes of commuting to work?",
+			"question": 7
+		},
+		{
+			"source": "もし皆さんの中で寄付をしてくださる方がいれば、とても嬉しいですね。",
+			"answer": "If any of you could chip in, I'd really appreciate it.",
+			"question": 10
+		},
+		{
+			"source": "往々にして、断念せざるを得ないのは住宅です",
+			"answer": "All too often it's housing that has to be dropped",
+			"question": 9
+		},
+		{
+			"source": "少しの間、私に反論させてください",
+			"answer": "Let me play devil's advocate for a moment",
+			"question": 5
+		}
+	]
+}

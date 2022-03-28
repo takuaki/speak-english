@@ -5,6 +5,7 @@ import {
 	RouterView,
 } from "vue-router";
 import authRoute from "@/router/auth/index";
+import Top from "@/views/Top.vue";
 import Home from "@/views/Home.vue";
 import FillWords from "@/views/FillWords.vue";
 import Course from "@/views/Course.vue";
@@ -15,6 +16,12 @@ import auth from "@/server/api/authenticate";
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
+		{
+			path: "/",
+			name: "top",
+			component: Top,
+			
+		},
 		{
 			path: "/",
 			name: "home",

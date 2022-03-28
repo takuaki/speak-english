@@ -18,6 +18,24 @@
 		&:hover
 			background-color: $hover-color
 		
-		
-	//.menu-title
-		
+
+.nav
+	display: flex
+	flex-direction: row
+	justify-items: center
+	align-items: center
+	flex-wrap: nowrap
+	&-left
+		margin-right: auto
+
+	&-right
+		margin-left: auto		
+
+	&-item
+		font-size: .9rem
+
+	&-item + &-item
+		margin-left: 10px
+
+	&-item.active
+		color: $accent-color

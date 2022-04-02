@@ -21,13 +21,16 @@
 
 .nav
 	display: flex
-	flex-direction: row
-	justify-items: center
-	align-items: center
-	flex-wrap: nowrap
+	
+	&-left,&-right
+		display: flex
+		flex-direction: row
+		justify-items: center
+		align-items: center
+		flex-wrap: nowrap
+
 	&-left
 		margin-right: auto
-
 	&-right
 		margin-left: auto		
 
@@ -35,7 +38,7 @@
 		font-size: .9rem
 
 	&-item + &-item
-		margin-left: 10px
+		margin-left: 1.5rem
 
 	&-item.active
 		color: $accent-color

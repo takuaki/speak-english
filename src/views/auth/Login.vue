@@ -1,44 +1,44 @@
 <template>
-  <main class="container is-fullheight">
-    <p class="is-text-right has-pointer" @click="linkSignUp">
-      アカウント作成はこちら
-    </p>
-    <div class="login-alert">
-      <ErrorMessage :message="authError" />
-    </div>
-    <section class="box login-box">
-      <form id="login">
-        <p class="title is-medium is-text-centered">Login</p>
-        <fieldset form="#login">
-          <FieldInput
-            label="メールアドレス"
-            type="email"
-            v-model="email"
-            icon="email"
-            :errorMessage="checkEmail"
-          />
-          <FieldInput
-            label="パスワード"
-            type="password"
-            v-model="password"
-            icon="lock"
-            :errorMessage="checkPassword"
-          />
-        </fieldset>
-        <p class="caption is-text-right has-pointer" @click="forgetpassword">
-          パスワードを忘れた方はこちら
-        </p>
-        <button
-          type="button"
-          class="button"
-          @click="submit"
-          :disabled="disabled"
-        >
-          ログイン
-        </button>
-      </form>
-    </section>
-  </main>
+	<main class="container is-fullheight">
+		<p class="is-text-right has-pointer" @click="linkSignUp">
+			アカウント作成はこちら
+		</p>
+		<div class="login-alert">
+			<ErrorMessage :message="authError" />
+		</div>
+		<section class="box login-box">
+			<form id="login">
+				<p class="title is-medium is-text-centered">Login</p>
+				<fieldset form="#login">
+					<FieldInput
+						label="メールアドレス"
+						type="email"
+						v-model="email"
+						icon="email"
+						:errorMessage="checkEmail"
+					/>
+					<FieldInput
+						label="パスワード"
+						type="password"
+						v-model="password"
+						icon="lock"
+						:errorMessage="checkPassword"
+					/>
+				</fieldset>
+				<p class="caption is-text-right has-pointer" @click="forgetpassword">
+					パスワードを忘れた方はこちら
+				</p>
+				<button
+					type="button"
+					class="button"
+					@click="submit"
+					:disabled="disabled"
+				>
+					ログイン
+				</button>
+			</form>
+		</section>
+	</main>
 </template>
 
 <script lang="ts" setup>
@@ -56,37 +56,37 @@ const router = useRouter();
 
 const { checkEmail, checkPassword } = useCheckAuthInput(email, password);
 const disabled: Ref<boolean> = computed(() => {
-  return !(checkEmail.value === null && checkPassword.value === null);
+	return !(checkEmail.value === null && checkPassword.value === null);
 });
 
 const submit = async () => {
-  authError.value = "";
-  if (disabled.value) return;
-  const result = await signIn(email, password);
+	authError.value = "";
+	if (disabled.value) return;
+	const result = await signIn(email, password);
 
-  result.flatMap(
-    ({ error }) => {
-      switch (error) {
-        case "user-not-found":
-          authError.value = "アカウントが存在しません";
-          break;
-        case "unknown":
-          authError.value = "ログイン出来ませんでした";
-          break;
-      }
-    },
-    (_) => {
-      router.push({ name: "home" });
-    }
-  );
+	result.flatMap(
+		({ error }) => {
+			switch (error) {
+				case "user-not-found":
+					authError.value = "アカウントが存在しません";
+					break;
+				case "unknown":
+					authError.value = "ログイン出来ませんでした";
+					break;
+			}
+		},
+		(_) => {
+			router.push({ name: "home" });
+		}
+	);
 };
 
 const linkSignUp = () => {
-  router.push({ name: "signup" });
+	router.push({ name: "signup" });
 };
 
 const forgetpassword = () => {
-  router.push({ name: "forgetpassword" });
+	router.push({ name: "forgetpassword" });
 };
 </script>
 

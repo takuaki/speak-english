@@ -32,7 +32,6 @@ const updateHeight = (height?: number) => {
 
 $headerHeight : calc( v-bind(headerHeight) * 1px)
 
-
 .main-layout
 	display: flex
 	flex-direction: row

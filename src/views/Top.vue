@@ -1,19 +1,25 @@
 <template>
 	<main class="top top-background is-text-invert">
-		<header class="top-header header">
+		<header class="header is-fixed">
 			<nav class="nav">
 				<div class="nav-left">
 					<Logo />
 				</div>
 				<div class="nav-right">
-					<!--span class="nav-item"><a href="#">教材について</a></span-->
+					<span class="nav-item"><a href="#howto">使いかた</a></span>
 					<router-link :to="{ name: 'login' }" class="nav-item is-text-invert">
-						無料で試す
+						ログイン
 					</router-link>
+					<button
+						class="button has-background-accent nav-item"
+						@click="router.push({ name: 'signup' })"
+					>
+						新規登録
+					</button>
 				</div>
 			</nav>
 		</header>
-		<div class="container">
+		<section id="top" class="container is-fullheight">
 			<div class="top-contents">
 				<p class="body is-text-center">{{ sentense.source }}</p>
 				<AnimFillWord
@@ -22,23 +28,35 @@
 					class="top-contents-fillword"
 				/>
 			</div>
-			<button class="button top-button has-background-accent">学習する</button>
-		</div>
+			<button
+				class="button top-button has-background-accent"
+				@click="router.push({ name: 'lesson' })"
+			>
+				学習する
+			</button>
+		</section>
+		<section id="howto" class="is-fullheight">
+			<div class="container">
+				<h1>How to Use</h1>
+			</div>
+		</section>
 	</main>
 </template>
 
 <script lang="ts" setup>
-import Logo from "@/components/logo/Logo.vue";
-import { RouterLink } from "vue-router";
+import Logo from "@/components/icon/Logo.vue";
+import { RouterLink, useRouter } from "vue-router";
 import AnimFillWord from "@/components/animation/AnimFillWord.vue";
-import script from "@/assets/static/translate-examples.json";
+import { sentenses } from "@/assets/static/translate-examples.json";
 import { timer } from "@/utils/timer";
 import { ref, computed } from "vue";
+
+const router = useRouter();
 
 const index = ref(0);
 const typeend = async () => {
 	await timer(3000);
-	if (index.value < script.sentenses.length - 1) {
+	if (index.value < sentenses.length - 1) {
 		index.value += 1;
 	} else {
 		index.value = 0;
@@ -46,7 +64,7 @@ const typeend = async () => {
 };
 
 const sentense = computed(() => {
-	return script.sentenses[index.value];
+	return sentenses[index.value];
 });
 
 const answer = (sentense: string, index_space: number) => {
@@ -65,6 +83,7 @@ const answer = (sentense: string, index_space: number) => {
 
 	&-header
 		padding: 20px 5% 0
+		height: 60px
 
 	&-background
 		background: linear-gradient(0deg, rgba($black,0.9),rgba($black,0.9)),url("@/assets/images/book-background.jpg")

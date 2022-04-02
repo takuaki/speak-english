@@ -1,7 +1,5 @@
 <template>
-	<header class="header">
-		<Header></Header>
-	</header>
+	<Header></Header>
 	<main class="main-layout has-background">
 		<aside class="aside">
 			<ul class="menu">

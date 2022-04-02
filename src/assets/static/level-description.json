@@ -1,0 +1,83 @@
+{
+	
+	"1": {
+		"grade": { "en": "newcomer", "ja": "初学者" },
+		"vocabrary": { "start": 1, "end": 500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"2": {
+		"grade": { "en": "beginner", "ja": "初学者" },
+		"vocabrary": { "start": 501, "end": 1000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"3": {
+		"grade": { "en": "apprentice", "ja": "研修生" },
+		"vocabrary": { "start": 1001, "end": 1500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"4": {
+		"grade": { "en": "apprentice", "ja": "研修生" },
+		"vocabrary": { "start": 1501, "end": 2000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"5": {
+		"grade": { "en": "hard worker", "ja": "努力家" },
+		"vocabrary": { "start": 2001, "end": 2500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"6": {
+		"grade": { "en": "hard worker", "ja": "努力家" },
+		"vocabrary": { "start": 2501, "end": 3000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"7": {
+		"grade": { "en": "intermediate", "ja": "中級者" },
+		"vocabrary": { "start": 3001, "end": 3500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"8": {
+		"grade": { "en": "intermediate", "ja": "中級者" },
+		"vocabrary": { "start": 3501, "end": 4000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"9": {
+		"grade": { "en": "studious", "ja": "勉強家" },
+		"vocabrary": { "start": 4001, "end": 4500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"10": {
+		"grade": { "en": "studious", "ja": "勉強家" },
+		"vocabrary": { "start": 4501, "end": 5000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"11": {
+		"grade": { "en": "honor student", "ja": "優等生" },
+		"vocabrary": { "start": 5001, "end": 5500 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"12": {
+		"grade": { "en": "honor student", "ja": "優等生" },
+		"vocabrary": { "start": 5501, "end": 6000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"13": {
+		"grade": { "en": "valedictorian", "ja": "特待生" },
+		"vocabrary": { "start": 6001, "end": 7000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"14": {
+		"grade": { "en": "valedictorian", "ja": "特待生" },
+		"vocabrary": { "start": 7001, "end": 8000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"15": {
+		"grade": { "en": "advanced", "ja": "上級者" },
+		"vocabrary": { "start": 9001, "end": 9000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	},
+	"16": {
+		"grade": { "en": "advanced", "ja": "上級者" },
+		"vocabrary": { "start": 9001, "end": 10000 },
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+	}
+}

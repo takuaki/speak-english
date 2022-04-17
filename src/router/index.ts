@@ -3,11 +3,11 @@ import authRoute from "@/router/auth/index";
 import Top from "@/views/Top.vue";
 import Home from "@/views/Home.vue";
 import FillWords from "@/views/FillWords.vue";
-//import Course from "@/views/Course.vue";
 import DashBoard from "@/views/DashBoard.vue";
 import Lessons from "@/views/Lessons.vue";
 import Review from "@/views/Review.vue";
 import AboutLevel from "@/views/about/AboutLevel.vue";
+import SelectLevel from "@/views/SelectLevel.vue";
 
 import auth from "@/server/api/authenticate";
 
@@ -33,6 +33,11 @@ const router = createRouter({
 					path: "about/level",
 					component: AboutLevel,
 					name: "aboutLevel",
+				},
+				{
+					path: "about/level/select",
+					component: SelectLevel,
+					name: "selectLevel",
 				},
 				{
 					path: "course/:course",

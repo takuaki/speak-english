@@ -7,7 +7,7 @@
 		>
 			<SideMenu />
 		</aside>
-		<section class="main-content has-background">
+		<section class="main-content">
 			<RouterView />
 		</section>
 	</main>
@@ -53,6 +53,7 @@ $headerHeight : calc( v-bind(headerHeight) * 1px)
 			display: none
 
 	.main-content
+		min-height: calc(100vh - $headerHeight )
 		flex-basis: 80%
 		flex-grow: 1
 </style>

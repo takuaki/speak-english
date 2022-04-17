@@ -1,0 +1,20 @@
+@import "./utils.sass"
+	
+$padding: 12px
+
+.columns
+	&.no-wrap
+		flex-wrap: nowrap
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	align-items: center
+	
+	.column
+		box-sizing: border-box
+		padding: $padding
+		&.is-half
+			flex-basis: 50%
+		@for $i from 1 to 12
+			&.is-#{$i}
+				flex-basis: calc(8.333333 * $i)

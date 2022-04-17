@@ -1,6 +1,6 @@
 <template>
 	<label v-if="!errorMessage" class="label">{{ label }}</label>
-	<label v-else-if="errorMessage" class="label is-error">{{
+	<label v-else-if="errorMessage" class="label is-text-error">{{
 		errorMessage
 	}}</label>
 	<div class="control is-rounded has-icons-left is-medium">

@@ -5,13 +5,13 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 .button
 	display: block
 	border: 1px solid gray
-	padding: .5em 1.3em
+	padding: .3em 1.3em
 	border-radius: .5em
 	line-height: 1.5
 	border-color: $primary-color
 	background-color: white
 	border-width: 1.5px
-
+	
 	&:disabled
 		background-color: lightgray
 		border: none
@@ -27,7 +27,12 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 	//@each $name,$color in $colors
 	//	&.is-#{$name}
 	//		border-color: $color
-	
+
+	//icon付きbutton
+	/*<button class="button"><span class=icon/></button>
+	//.icon
+		
+			
 //buttonを並列に並べる場合
 .button-group
 	display: flex
@@ -37,3 +42,5 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 	column-gap: 20px
 	&.is-flex-start
 		justify-content: flex-start
+
+

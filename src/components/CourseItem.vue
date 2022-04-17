@@ -1,45 +1,94 @@
 <template>
-  <div class="box course-item" @click="link">
-    <span class="icon is-text-primary is-large">
-      <slot name="icon">
-        <i class="fa fa-home"></i>
-      </slot>
-    </span>
-    <p class="body">
-      <slot name="title"></slot>
-    </p>
-    <p class="caption">
-      <slot name="caption"></slot>
-    </p>
-  </div>
+	<div class="course is-4by3" @click="setLevel">
+		<div class="is-4by3-content">
+			<div class="course-content is-text-on-primary is-text-left columns">
+				<div class="column is-half">
+					<h3 class="">{{ `Level ${level}` }}</h3>
+					<p class="body caption course-caption">
+						{{ detail?.description }}
+					</p>
+				</div>
+				<div class="column is-half">
+					<p>{{ progress }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
-import { defineProps, toRefs } from "vue";
+import { state } from "@/composable/store";
+import { toRefs } from "vue";
+import { correspondWith } from "@/server/api/level";
+import { computed } from "@vue/reactivity";
+import { useModal } from "@/composable/useModal";
 
-const props = defineProps<{ course: string }>();
-const { course } = toRefs(props);
-const router = useRouter();
+const props = defineProps<{ level: number }>();
 
-const link = () => {
-  router.push({ name: "course", params: { course: course.value } });
+const { level } = toRefs(props);
+const { closeModal } = useModal();
+
+const detail = computed(() => {
+	return correspondWith(level.value);
+});
+
+const progress = computed(() => {
+	const progress = state.progress.find(({ level: l }) => l === level.value);
+	const vocab = detail.value?.vocabrary;
+	if (vocab === undefined || progress === undefined) return undefined;
+	const d = vocab.end - vocab.start;
+	return `${progress.words}/${d}`;
+});
+
+const setLevel = () => {
+	state.level = level.value;
+	closeModal();
 };
 </script>
 
 <style lang="sass" scoped>
-.course-item
-	width: 200px
-	display: flex
-	flex-direction: column
-	text-align: center
+@import "@/assets/variables.sass"
+
+.course
 	cursor: pointer
+	//flex-shrink: 1
+	border-radius: 8px
+	position: relative
 
-	.body
-		margin: 0
+	&-content
+		position: absolute
+		bottom: 0
+		left: 0
+		right: 0
+		display: flex
+		flex-direction: row
+		margin-top: auto
+		background: rgba($black,0.7)
+		padding: .5em
 
-	.caption
-		margin-top: .5em
-		word-break: keep-all
-		word-wrap: break-word
+	&-caption
+		max-height: calc(1.2 * 3em)
+		overflow-wrap: break-word
+		text-overflow: ellipsis
+		overflow: hidden
+
+
+.is-4by3
+	width: 100%
+	position: relative
+	box-sizing: border-box
+	&::after
+		position: relative
+		content: ""
+		display: block
+		padding-top: 75%
+	&-content
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		background: linear-gradient(0deg, rgba($black,0.3),rgba($black,0.3)),url("@/assets/images/book-background.jpg")
+		background-size: cover
+		border-radius: 4px
 </style>

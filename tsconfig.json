@@ -9,7 +9,7 @@
 		"target": "esnext",
 		"module": "esnext",
 		"isolatedModules": true,
-		"allowJs": false,
+		"allowJs": true,
 		"typeRoots": ["./note_modules/@types", "./types"],
 		"types": ["vitest/globals"]
 	},

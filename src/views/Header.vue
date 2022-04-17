@@ -8,7 +8,9 @@
 			</div>
 			<div class="nav-right">
 				<div class="nav-item">
-					<router-link :to="{ name: 'aboutLevel' }">Levelについて</router-link>
+					<router-link :to="{ name: 'aboutLevel' }">
+						<p class="is-text-on-primary">Levelについて</p>
+					</router-link>
 				</div>
 				<div class="nav-item">
 					<span

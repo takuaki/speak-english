@@ -10,34 +10,51 @@
 		<div class="row w-500 mt-6 mb-4">
 			<p class="row-left">
 				level
-				<span class="title">12</span>
+				<span class="title">{{ state.level }}</span>
 			</p>
 			<p class="row-right">
 				Grade
-				<span class="title">Master</span>
+				<span class="title">{{ grade["en"] }}</span>
 			</p>
 		</div>
 		<div class="button-group mx-auto">
 			<button class="button is-accent">Go Study</button>
-			<button class="button">Levelを選び直す</button>
+			<button class="button" @click="openModal">Levelを選び直す</button>
 		</div>
-		<div class="my-6">
+		<div class="my-6" v-if="others">
 			<h2 class="is-text-center">換算スコア</h2>
 			<div class="row w-500">
-				<p class="row-left">
-					TOEIC
-					<span class="subtitle">900~990</span>
-				</p>
-				<p class="row-right">
-					英語検定
-					<span class="subtitle">1級相当</span>
+				<p class="row-item" v-for="(key, value) in others" :key="key">
+					{{ key }}
+					<span class="subtitle">{{ value }}</span>
 				</p>
 			</div>
 		</div>
 	</div>
+	<div class="modal" :class="{ 'is-close': closed }">
+		<div class="modal-close">
+			<span
+				class="material-icons-outlined has-pointer is-text-on-primary"
+				@click="closeModal"
+				>close</span
+			>
+		</div>
+		<div class="modal-container">
+			<SelectLevel />
+		</div>
+	</div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts" setup>
+import { useModal } from "@/composable/useModal";
+import SelectLevel from "../SelectLevel.vue";
+import { correspondWith } from "@/server/api/level";
+import { state } from "@/composable/store";
+
+const { grade, description, others } = correspondWith(state.level);
+
+const { openModal, closeModal, closed } = useModal();
+</script>
 
 <style lang="sass" scoped>
 .w-500
@@ -50,4 +67,6 @@
 	flex-direction: row
 	justify-content: space-around
 	align-items: center
+	> .row-item
+			flex-basis: 50%
 </style>

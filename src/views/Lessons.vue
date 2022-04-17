@@ -1,20 +1,20 @@
 <template>
-  <div class="container">
-    <section class="lesson-section">
-      <div v-if="learning">
-        <p>学習中のコース</p>
-        <LessonItem :info="learning"></LessonItem>
-      </div>
-      <p>コース一覧</p>
-      <div>
-        <LessonItem
-          v-for="lesson in lessons"
-          :info="lesson"
-          :key="lesson.name"
-        />
-      </div>
-    </section>
-  </div>
+	<div class="container">
+		<section class="lesson-section">
+			<div v-if="learning">
+				<p>学習中のコース</p>
+				<LessonItem :info="learning"></LessonItem>
+			</div>
+			<p>コース一覧</p>
+			<div>
+				<LessonItem
+					v-for="lesson in lessons"
+					:info="lesson"
+					:key="lesson.name"
+				/>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -33,8 +33,8 @@ const uid = user?.value?.uid;
 const course = await getCourse(name.value);
 
 const learning = course.lessons.find(({ progress }) => {
-  const { questions, answered } = progress;
-  return questions !== answered && answered !== 0;
+	const { questions, answered } = progress;
+	return questions !== answered && answered !== 0;
 });
 
 const lessons = course.lessons;

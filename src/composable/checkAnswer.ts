@@ -1,5 +1,4 @@
 import { onMounted, onUnmounted, ref } from "vue";
-import { writeLesson } from "@/server/api/database";
 
 export function useCheckAnswer(inputs: { answer: string; input: string }[]) {
 	function checkAnswer(): boolean {
@@ -18,11 +17,10 @@ type Score = {
 export const score = ref<Score>({});
 
 export function useCheckScore() {
-	function fillScore(
+	/*function fillScore(
 		quiz: string,
 		answers: { word: string; collect: boolean }[]
 	) {
-		// {'brother':false,'sister':true}
 		const value = Object.assign(
 			...answers.map(({ word, collect }) => {
 				return { [word]: collect };
@@ -45,4 +43,5 @@ export function useCheckScore() {
 	}
 
 	return { fillScore, uploadScore };
+*/
 }

@@ -5,10 +5,24 @@ $padding: 12px
 .columns
 	&.no-wrap
 		flex-wrap: nowrap
+	&.is-less-padding
+		> .column
+				padding: 0
+	&.is-align-flex-start
+		align-items: flex-start
+	&.is-justify-flex-start
+		justify-content: flex-start
 	display: flex
 	flex-direction: row
+	justify-content: center
 	flex-wrap: wrap
 	align-items: center
+
+	&.is-tablet
+		+mobile
+			display: block
+	
+
 	
 	.column
 		box-sizing: border-box
@@ -17,4 +31,4 @@ $padding: 12px
 			flex-basis: 50%
 		@for $i from 1 to 12
 			&.is-#{$i}
-				flex-basis: calc(8.333333 * $i)
+				flex-basis: calc(8.333333% * $i)

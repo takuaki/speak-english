@@ -3,7 +3,6 @@ import { reactive } from "vue";
 /**
  * local store replace by vuex
  */
-
 const state = reactive({
 	learned_words: 400,
 	level: 1,

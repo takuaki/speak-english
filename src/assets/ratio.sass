@@ -1,0 +1,20 @@
+//$ratio:('4by3':75%,'5by3':60%,)
+
+@for $i from 1 through 5
+	@for $j from 1 through 5
+		$ratio: calc(100% * $j / $i)
+		.is-#{$i}by#{$j}
+			width: 100%
+			position: relative
+			box-sizing: border-box
+			&::after
+				position: relative
+				content: ""
+				display: block
+				padding-top: $ratio
+			&-content
+				position: absolute
+				top: 0
+				left: 0
+				right: 0
+				bottom: 0

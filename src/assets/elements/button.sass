@@ -1,9 +1,10 @@
 @import "../variables.sass"
 
-$button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
+$button-size:('small':.8rem,'medium':1.2rem,'large':1.5rem)
 	
 .button
 	display: block
+	font-size: 1.2rem
 	border: 1px solid gray
 	padding: .3em 1.3em
 	border-radius: .5em
@@ -11,6 +12,7 @@ $button-size:('small':.8rem,'medium':1.0rem,'large':1.2rem)
 	border-color: $primary-color
 	background-color: white
 	border-width: 1.5px
+	cursor: pointer
 	
 	&:disabled
 		background-color: lightgray

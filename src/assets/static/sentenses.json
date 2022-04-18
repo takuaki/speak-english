@@ -1,0 +1,41 @@
+{
+	"1": [
+		{
+			"id": "0NeksonENlkas",
+			"source": "私の兄はバスで帰宅します",
+			"answer": "My brother gets home by bus",
+			"translate": {
+				"brother": "兄",
+				"bus": "バス"
+			}
+		},
+		{
+			"id": "0NekNemENlkas",
+			"source": "マイクは時々ユミと話をします",
+			"answre": "Mike sometimes talks with Yumi",
+			"translate": {
+				"sometimes": "時々"
+			}
+		},
+		{
+			"id": "1PeksEnENlkas",
+			"source": "あなた達は金曜日の午後に何を勉強しますか？",
+			"answer": "What do you study on Friday afternoon?",
+			"translate": {
+				"study": "勉強する",
+				"Friday": "金曜日"
+			}
+		}
+	],
+	"2": [
+		{
+			"id": "0NeksonENEkas",
+			"source": "私の妹はアメリカの歴史について知りません",
+			"answer": "My sister doesn't know about American history",
+			"translate": {
+				"know": "知っている",
+				"history": "歴史"
+			}
+		}
+	]
+}

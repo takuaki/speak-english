@@ -4,10 +4,11 @@ import Top from "@/views/Top.vue";
 import Home from "@/views/Home.vue";
 import FillWords from "@/views/FillWords.vue";
 import DashBoard from "@/views/DashBoard.vue";
-import Lessons from "@/views/Lessons.vue";
 import Review from "@/views/Review.vue";
 import AboutLevel from "@/views/about/AboutLevel.vue";
-import SelectLevel from "@/views/SelectLevel.vue";
+import UserProfile from "@/views/auth/profile/UserProfile.vue";
+import StudySetting from "@/views/auth/profile/StudySetting.vue";
+import ProfileMenu from "@/components/menu/ProfileMenu.vue";
 
 import auth from "@/server/api/authenticate";
 
@@ -15,18 +16,20 @@ const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
 		{
-			path: "/",
+			path: "/entry",
 			name: "top",
 			component: Top,
 		},
 		{
-			path: "/home",
+			path: "/",
 			name: "home",
 			component: Home,
 			meta: { requireAuth: true },
+			redirect: { name: "default" },
 			children: [
 				{
 					path: "",
+					name: "default",
 					component: DashBoard,
 				},
 				{
@@ -35,27 +38,31 @@ const router = createRouter({
 					name: "aboutLevel",
 				},
 				{
-					path: "about/level/select",
-					component: SelectLevel,
-					name: "selectLevel",
-				},
-				{
-					path: "course/:course",
-					component: Lessons,
-					name: "course",
-					props: true,
-				},
-				{
-					path: "course/:course/lesson/:lesson",
+					path: "level/:level",
 					component: FillWords,
 					props: true,
-					name: "lesson",
+					//props: route=>({index:route.query.index})
+					name: "study",
 				},
 				{
 					path: "course/:course/lesson/:lesson/review",
 					component: Review,
 					name: "review",
 					props: true,
+				},
+				{
+					path: "user/:username/",
+					name: "profile",
+					props: true,
+					components: {
+						default: UserProfile,
+						menu: ProfileMenu,
+					},
+					/*redirect: { name: "profile/default" },
+					children: [
+						{ path: "", component: UserProfile, name: "profile/default" },
+						{ path: "study", component: StudySetting, name: "setting/study" },
+					],*/
 				},
 			],
 		},

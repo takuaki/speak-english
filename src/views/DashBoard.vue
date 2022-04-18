@@ -19,16 +19,18 @@
 			</h4>
 			<p class="is-text-on-primary">{{ description }}</p>
 			<div class="button-group is-flex-start my-2">
-				<button class="button is-accent is-large">Go Study!</button>
+				<button class="button is-accent is-large" @click="study">
+					Go Study!
+				</button>
 				<button class="button is-large">復習する</button>
 			</div>
 			<!--CircleProgress :progress="progress" /-->
-			<div class="columns no-wrap">
+			<div class="columns no-wrap is-justify-flex-start">
 				<div class="column">
-					<CircleProgress :percentage="20" :radius="30" />
+					<CircleProgress :percentage="percentage" :radius="30" />
 				</div>
 				<p class="title is-text-accent column">
-					27%
+					{{ `${percentage}%` }}
 					<span class="body is-text-on-primary">of lesson are completed</span>
 				</p>
 			</div>
@@ -38,13 +40,20 @@
 
 <script lang="ts" setup>
 import { correspondWith } from "@/server/api/level";
-//import CircleProgress from "@/components/progress/CircleProgress.vue";
-import { ref, computed } from "vue";
 import { state } from "@/composable/store";
-import CircleProgress from "../components/progress/CircleProgress.vue";
+import { useRouter } from "vue-router";
+import CircleProgress from "@/components/progress/CircleProgress.vue";
+import { ref } from "vue";
 
+const percentage = ref(50);
+
+const router = useRouter();
 const { learned_words: total_words, level, progress } = state;
 const { description, grade, vocabrary } = correspondWith(level);
+
+const study = () => {
+	router.push({ name: "" });
+};
 </script>
 
 <style lang="sass" scoped>

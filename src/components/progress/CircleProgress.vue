@@ -17,7 +17,7 @@
 					<stop offset="100%" stop-color="#673ab7" />
 				</linearGradient>
 			</defs-->
-			<circle :cx="center" :cy="center" :r="r" stroke-linecap="round" />
+			<circle :cx="center" :cy="center" :r="r" stroke-linecap="butt" />
 		</svg>
 	</div>
 </template>
@@ -37,7 +37,7 @@ const width = ref(10);
 const { percentage, radius } = toRefs(props);
 
 const center = radius.value;
-const r = radius.value - width.value / 2;
+const r = radius.value - width.value / 2.0;
 </script>
 
 <style scoped lang="sass">
@@ -46,6 +46,7 @@ const r = radius.value - width.value / 2;
 $percentage: calc(v-bind(percentage) * 0.01)
 $radius: calc(v-bind(radius) * 1px)
 $inner-radius: calc( calc(v-bind(radius) - v-bind(width)) * 1px )
+$dash-array: calc(($radius + $inner-radius) * 3.141592 )
 
 #circleProgress
 	height: calc($radius * 2)
@@ -83,15 +84,16 @@ circle
 	fill: none
 	//stroke: url(#GradientColor)
 	stroke: $accent-color
-	stroke-width: 11px
-	stroke-dasharray: 248
+	stroke-width: calc(v-bind(width)* 1px)
+	stroke-dasharray: $dash-array
+	stroke-dashoffset: $dash-array
 	animation: anim 2s linear forwards
 	transform: rotate(-90deg)
 	transform-origin: center
 
 @keyframes anim
 	100%
-		stroke-dashoffset: calc(248 - 248 * $percentage)
+		stroke-dashoffset: calc($dash-array - $dash-array * $percentage)
 
 /*.shadow
 	&-left,&-right

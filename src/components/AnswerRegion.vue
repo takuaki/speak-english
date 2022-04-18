@@ -17,8 +17,6 @@ import { inject, watch, ref, toRefs, onUpdated } from "vue";
 import type { Ref } from "vue";
 import InputWord from "@/components/input/InputWord.vue";
 import TextWord from "@/components/TextWord.vue";
-import { useCheckScore } from "@/composable/checkAnswer";
-import { useRoute } from "vue-router";
 
 type Props = {
 	counter: number | null;
@@ -28,13 +26,10 @@ type Props = {
 	}[];
 };
 
-const { course, lesson } = useRoute().params;
-
 const props = defineProps<Props>();
 const { answer, counter } = toRefs(props);
 //const num = answer.value.filter((v) => v.space).length;
 const inputs: boolean[] = Array(answer.value.length);
-const { fillScore } = useCheckScore();
 
 const update = (index: number, collect: boolean) => {
 	inputs[index] = collect;
@@ -49,19 +44,6 @@ watch(check, (isCheck) => {
 		collect.value =
 			inputs.filter((v) => v).length ===
 			answer.value.filter((v) => v.space).length;
-
-		//wordを記録する
-		const quiz = `${lesson}_${counter.value}`;
-		//TODO map+filterを綺麗に書く
-		fillScore(
-			quiz,
-			answer.value
-				.map(({ space, text }, index) => {
-					if (space) return { word: text, collect: inputs[index] };
-					else return { word: "", collect: false };
-				})
-				.filter((v) => v.word !== "")
-		);
 	}
 });
 

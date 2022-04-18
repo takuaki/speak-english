@@ -41,4 +41,7 @@
 	@media only screen and (min-width: $desktop)
 		@content
 
-	
+@for $i from 1 to 10
+	$width: calc($i*100)
+	.w-#{$width}
+		width: calc($width * 1px)

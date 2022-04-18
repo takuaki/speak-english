@@ -4,9 +4,6 @@ import SignUp from "@/views/auth/SignUp.vue";
 import ForgetPassword from "@/views/auth/ForgetPass.vue";
 import VerifyEmail from "@/views/auth/VerifyEmail.vue";
 import UserName from "@/views/auth/UserName.vue";
-import Profile from "@/views/auth/Profile.vue";
-import UserProfile from "@/views/auth/profile/UserProfile.vue";
-import StudySetting from "@/views/auth/profile/StudySetting.vue";
 
 const routes: RouteRecordRaw[] = [
 	{
@@ -35,17 +32,6 @@ const routes: RouteRecordRaw[] = [
 		name: "username",
 		component: UserName,
 		meta: { requireAuth: true },
-	},
-	{
-		path: "/user/:username/",
-		name: "profile",
-		component: Profile,
-		meta: { requireAuth: true },
-		props: true,
-		children: [
-			{ path: "", component: UserProfile },
-			{ path: "study", component: StudySetting, name: "setting/study" },
-		],
 	},
 ];
 

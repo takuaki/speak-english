@@ -18,9 +18,9 @@ import WordItem from "@/components/WordItem.vue";
 import { computed, inject } from "vue";
 import { useRoute } from "vue-router";
 import type { Ref } from "vue";
-import { useCheckScore, score } from "@/composable/checkAnswer";
+//import { useCheckScore, score } from "@/composable/checkAnswer";
 
-const { uploadScore } = useCheckScore();
+//const { uploadScore } = useCheckScore();
 const user: User | undefined = inject("user");
 const route = useRoute();
 const { course, lesson } = route.params;
@@ -37,7 +37,7 @@ const list: Ref<{ word: string; collect: boolean }[]> = computed(() => {
 	return array;
 });
 
-uploadScore(user?.uid, course, lesson);
+//uploadScore(user?.uid, course, lesson);
 </script>
 
 <style lang="sass" scoped>

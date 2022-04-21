@@ -20,3 +20,4 @@ export const deleteUser = functions.https.onCall(async (uid,context)=>{
 		return {success:false,message:err.code}
 	}
 })
+

@@ -15,7 +15,7 @@
 		</div>
 		<div class="dashboard-item">
 			<h4 class="dashboard-label is-text-on-primary display-4">
-				{{ `Level ${level}` }}
+				Your Level {{ level }}
 			</h4>
 			<p class="is-text-on-primary">{{ description }}</p>
 			<div class="button-group is-flex-start my-2">

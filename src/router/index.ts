@@ -58,11 +58,6 @@ const router = createRouter({
 						default: UserProfile,
 						menu: ProfileMenu,
 					},
-					/*redirect: { name: "profile/default" },
-					children: [
-						{ path: "", component: UserProfile, name: "profile/default" },
-						{ path: "study", component: StudySetting, name: "setting/study" },
-					],*/
 				},
 			],
 		},

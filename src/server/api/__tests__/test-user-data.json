@@ -1,0 +1,15 @@
+{
+	"USER_ID_ABCD": {
+		"current_level": 2,
+		"id": "iNe1pnQusnad",
+		"setting": {
+			"quiz_batch": 10
+		},
+		"quizzes": {
+			"level_1": {
+				"NeonbPNDfnon": { "translate": 0, "bus": 1 },
+				"iNe1pnQusnad": { "area": -1, "friday": -1 }
+			}
+		}
+	}
+}

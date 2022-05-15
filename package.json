@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
+    "test:unit": "vitest --environment jsdom",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "dev": "vite",
     "emulators": "firebase emulators:start",
     "preview": "vite preview --port 5050",
-    "typecheck": "vue-tsc --noEmit",
-    "test:unit": "vitest --environment jsdom",
-    "test:e2e": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress open'",
-    "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'"
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@splidejs/vue-splide": "^0.5.18",
@@ -26,6 +26,7 @@
     "@types/jsdom": "^16.2.14",
     "@types/node": "^16.11.22",
     "@vitejs/plugin-vue": "^2.1.0",
+    "@vue/cli-plugin-e2e-cypress": "~4.5.15",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
     "@vue/test-utils": "^2.0.0-rc.17",
